@@ -2,10 +2,10 @@
 import React from 'react';
 import { 
   Cpu, 
-  Power,
-  Zap,
-  MoreVertical,
-  Activity
+  Maximize2,
+  ExternalLink,
+  ShieldCheck,
+  Zap
 } from 'lucide-react';
 
 interface AppHeaderProps {
@@ -15,52 +15,45 @@ interface AppHeaderProps {
 }
 
 const AppHeader: React.FC<AppHeaderProps> = ({ 
+  toggleFullscreen,
   onLaunch
 }) => {
   return (
-    <header className="h-12 bg-[#050505] border-b border-white/5 flex items-center justify-between px-6 flex-shrink-0 z-50">
+    <header className="h-10 bg-[#0a0a0a] border-b border-white/5 flex items-center justify-between px-4 flex-shrink-0 z-50">
       {/* Brand Section */}
-      <div className="flex items-center space-x-4">
-        <div className="flex items-center justify-center w-7 h-7 bg-indigo-600 rounded shadow-indigo-500/30 shadow-lg">
-          <Cpu size={14} className="text-white" />
+      <div className="flex items-center space-x-3">
+        <div className="flex items-center justify-center w-6 h-6 bg-indigo-600 rounded-md">
+          <Cpu size={12} className="text-white" />
         </div>
-        <div className="flex flex-col">
-          <div className="flex items-center text-[12px]">
-            <span className="font-black tracking-tighter text-white">WORKSPACE</span>
-            <span className="font-light text-slate-500 ml-1">CONSOLE</span>
+        <div className="flex items-center">
+          <span className="text-[11px] font-black tracking-tighter text-white uppercase">AI Studio</span>
+          <span className="text-[11px] font-light text-slate-500 ml-1 uppercase">Native</span>
+          <div className="ml-3 flex items-center space-x-1.5 px-2 py-0.5 bg-emerald-500/10 border border-emerald-500/20 rounded text-[9px] text-emerald-400 font-bold uppercase tracking-widest">
+            <div className="w-1 h-1 bg-emerald-400 rounded-full animate-pulse"></div>
+            <span>Connected</span>
           </div>
         </div>
       </div>
 
-      {/* System Status Indicators */}
-      <div className="hidden sm:flex items-center space-x-6">
-        <div className="flex items-center space-x-2">
-           <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
-           <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Network Stable</span>
-        </div>
-        <div className="h-4 w-[1px] bg-white/10"></div>
-        <div className="flex items-center space-x-2">
-           <Activity size={12} className="text-indigo-400" />
-           <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Link Encrypted</span>
-        </div>
-      </div>
-
       {/* Actions */}
-      <div className="flex items-center space-x-3">
+      <div className="flex items-center space-x-2">
         <button 
           onClick={onLaunch}
-          className="flex items-center space-x-2 px-3 py-1.5 bg-indigo-600/10 hover:bg-indigo-600/20 text-indigo-400 rounded-lg border border-indigo-500/20 transition-all text-[10px] font-bold uppercase tracking-widest"
+          className="flex items-center space-x-2 px-2.5 py-1 hover:bg-white/5 text-slate-400 hover:text-white rounded transition-all text-[9px] font-bold uppercase tracking-widest"
+          title="Open in new tab if block occurs"
         >
-          <Zap size={14} />
-          <span>Sync View</span>
+          <ExternalLink size={12} />
+          <span>Mirror Link</span>
         </button>
 
+        <div className="h-3 w-[1px] bg-white/10 mx-1"></div>
+
         <button 
-          className="p-2 hover:bg-white/5 rounded-lg text-slate-600 hover:text-red-500 transition-all"
-          title="Exit Application"
-          onClick={() => window.close()}
+          onClick={toggleFullscreen}
+          className="p-1.5 hover:bg-white/5 rounded text-slate-500 hover:text-white transition-all"
+          title="Toggle Fullscreen"
         >
-          <Power size={16} />
+          <Maximize2 size={14} />
         </button>
       </div>
     </header>
