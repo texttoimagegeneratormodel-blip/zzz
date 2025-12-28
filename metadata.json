@@ -1,5 +1,8 @@
 {
-  "name": "AI Studio Dedicated Viewer",
-  "description": "A focused, single-purpose browser environment specifically designed to showcase and interact with the Google AI Studio application. It provides a clean, distraction-free interface without search bars or navigation clutter.",
-  "requestFramePermissions": []
+  "name": "AI Studio Pro App",
+  "description": "A high-performance standalone application interface for Google AI Studio, providing an immersive and distraction-free workspace.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
 }
