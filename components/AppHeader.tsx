@@ -1,81 +1,78 @@
 
 import React from 'react';
 import { 
-  RefreshCw, 
-  Maximize, 
-  Minimize, 
-  Activity,
-  Box,
-  Layout,
-  MoreVertical
+  Maximize2, 
+  Minimize2, 
+  Cpu, 
+  Layers,
+  Power,
+  Zap,
+  ChevronRight
 } from 'lucide-react';
 
 interface AppHeaderProps {
-  onSync: () => void;
-  isSyncing: boolean;
   toggleFullscreen: () => void;
   isFullscreen: boolean;
+  onLaunch: () => void;
 }
 
 const AppHeader: React.FC<AppHeaderProps> = ({ 
-  onSync, 
-  isSyncing, 
   toggleFullscreen, 
-  isFullscreen 
+  isFullscreen,
+  onLaunch
 }) => {
   return (
-    <header className="h-10 bg-[#141414] border-b border-white/5 flex items-center justify-between px-3 flex-shrink-0 z-50">
-      {/* App Brand & Icon */}
-      <div className="flex items-center space-x-3 group cursor-default">
-        <div className="flex items-center justify-center w-6 h-6 bg-indigo-600 rounded shadow-indigo-500/20 shadow-lg">
-          <Box size={14} className="text-white fill-current" />
+    <header className="h-12 bg-[#0d0d0d] border-b border-white/5 flex items-center justify-between px-4 flex-shrink-0 z-50">
+      {/* Brand Section */}
+      <div className="flex items-center space-x-4">
+        <div className="flex items-center justify-center w-8 h-8 bg-gradient-to-br from-indigo-600 to-violet-700 rounded-lg shadow-lg shadow-indigo-500/20">
+          <Cpu size={16} className="text-white" />
         </div>
-        <div className="flex flex-col">
-          <span className="text-[11px] font-bold tracking-wider uppercase text-slate-300">AI Studio Pro</span>
-          <span className="text-[8px] font-medium text-indigo-400 -mt-1 uppercase tracking-widest opacity-80">v3.5 Build Alpha</span>
-        </div>
-      </div>
-
-      {/* App-Style Navigation / Tabs (Static) */}
-      <div className="flex items-center h-full space-x-1">
-        <div className="px-4 h-full flex items-center border-b-2 border-indigo-500 bg-white/5 text-white text-[11px] font-semibold cursor-pointer">
-          <Layout size={12} className="mr-2 opacity-70" />
-          Primary Workspace
-        </div>
-        <div className="px-4 h-full flex items-center border-b-2 border-transparent hover:bg-white/5 text-slate-500 text-[11px] font-medium transition-all duration-200 cursor-not-allowed">
-          System Console
+        <div className="flex items-center text-sm">
+          <span className="font-extrabold tracking-tighter text-white">STUDIO</span>
+          <span className="font-light text-slate-400 ml-1">PRO</span>
+          <div className="ml-3 px-2 py-0.5 bg-indigo-500/10 border border-indigo-500/20 rounded-md">
+            <span className="text-[9px] font-bold text-indigo-400 uppercase tracking-widest">v3.5</span>
+          </div>
         </div>
       </div>
 
-      {/* Action Controls */}
-      <div className="flex items-center space-x-2">
-        <div className="flex items-center px-2 py-1 bg-black/30 rounded border border-white/5 mr-2">
-          <Activity size={12} className="text-emerald-500 mr-2 animate-pulse" />
-          <span className="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">Real-time Connected</span>
-        </div>
-
-        <button 
-          onClick={onSync}
-          className="p-1.5 hover:bg-white/5 rounded transition-all active:scale-95 text-slate-400 hover:text-white"
-          title="Force Sync State"
-        >
-          <RefreshCw size={14} className={isSyncing ? 'animate-spin text-indigo-400' : ''} />
+      {/* Center Nav - App Mode Only */}
+      <div className="hidden md:flex items-center space-x-1 bg-black/40 p-1 rounded-lg border border-white/5">
+        <button className="px-4 py-1.5 rounded-md bg-indigo-600 text-[11px] font-bold text-white shadow-lg transition-all">
+          Main Console
         </button>
+        <button className="px-4 py-1.5 rounded-md hover:bg-white/5 text-[11px] font-bold text-slate-500 hover:text-slate-300 transition-all">
+          Data Stream
+        </button>
+      </div>
+
+      {/* System Actions */}
+      <div className="flex items-center space-x-3">
+        <button 
+          onClick={onLaunch}
+          className="hidden sm:flex items-center space-x-2 px-3 py-1.5 bg-white/5 hover:bg-white/10 rounded-lg border border-white/10 transition-all group"
+        >
+          <Zap size={14} className="text-amber-400 group-hover:scale-110" />
+          <span className="text-[10px] font-bold uppercase tracking-wider">Fast Launch</span>
+          <ChevronRight size={12} className="text-slate-600" />
+        </button>
+
+        <div className="h-5 w-[1px] bg-white/10"></div>
 
         <button 
           onClick={toggleFullscreen}
-          className="p-1.5 hover:bg-white/5 rounded transition-all text-slate-400 hover:text-white"
-          title={isFullscreen ? "Restore View" : "Maximize Workspace"}
+          className="p-2 hover:bg-white/5 rounded-lg text-slate-400 hover:text-white transition-all"
+          title="Fullscreen Mode"
         >
-          {isFullscreen ? <Minimize size={14} /> : <Maximize size={14} />}
+          {isFullscreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
         </button>
 
-        <div className="h-4 w-[1px] bg-white/10 mx-1"></div>
-
         <button 
-          className="p-1.5 hover:bg-white/5 rounded transition-all text-slate-400 hover:text-white"
+          className="p-2 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white rounded-lg transition-all border border-red-500/20"
+          title="Shutdown Session"
         >
-          <MoreVertical size={14} />
+          <Power size={16} />
         </button>
       </div>
     </header>

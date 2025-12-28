@@ -1,8 +1,9 @@
 {
-  "name": "AI Studio Pro App",
-  "description": "A high-performance standalone application interface for Google AI Studio, providing an immersive and distraction-free workspace.",
+  "name": "AI Studio Desktop",
+  "description": "A dedicated high-performance workspace for AI model development and testing.",
   "requestFramePermissions": [
     "camera",
-    "microphone"
+    "microphone",
+    "geolocation"
   ]
 }
